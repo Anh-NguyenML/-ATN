@@ -1,0 +1,535 @@
+//ta10.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Portal Site</title>
+    <link href="local.min.css" rel="stylesheet"> 
+    <!-- Bootstrap Icons CDN -->
+    <link href="main.css" rel="stylesheet"> 
+    <link rel="icon" type="image/svg+xml" href="caret-up-square-fill.svg">
+    <style>
+        /* Body and Layout */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f8f9fa;
+            
+        }
+
+        .container-main {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: row;
+            padding: 10px;
+            margin-left: 250px; /* Thêm khoảng trống cho sidebar cố định */
+
+        }
+
+        .admin {
+            margin-bottom: 30px;
+            display: flex;
+        }
+
+        
+        .sidebar h4 {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+
+        .sidebar h5 {
+            font-size: 15px;
+            font-weight: bold;
+            color: green;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 15px;
+        }
+
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+        }
+
+        .sidebar ul li a:hover {
+            color: #007bff;
+        }
+
+        .sidebar ul li a i {
+            margin-right: 10px;
+            font-size: 16px;
+        }
+
+        /* Main Content Styling */
+        .content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        h2 {
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        /* Filter Section Styling */
+        .filter-section {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .filter-text {
+            font-size: 18px;
+            font-weight: bold;
+            color: #000;
+        }
+        /*
+        .btn-group .btn .btn-outline-primary {
+            font-size: 12px;
+            padding: 5px 10px;
+        }
+        */
+        /*
+        .btn-group {
+            display: flex;
+            gap: 5px;
+        }
+        */
+        /* Thu nhỏ các nút và căn trái */
+        .btn-group {
+            display: flex;
+            gap: 5px;
+            /*justify-content: flex-start; /* Căn các nút về bên trái */
+            width: 150px;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .filter-input-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .filter-input {
+            width: 250px;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        /*
+        .btn {
+            background-color: #007bff;
+            color: white;
+            border-radius: 10px;
+        }
+        */
+        
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .left {
+            text-align: left;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        /* Button Styling */
+        .btn-danger {
+            background-color: #dc3545;
+            border: none;
+            color: #fff;
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+
+        /* Nền mờ mờ */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 10;
+            background-color: rgba(0, 0, 0, 0.05); /* Màu nền nhẹ với độ mờ */
+            background-image: url('website_background.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #333;
+        }
+
+        /* Hình ảnh mờ kết hợp với màu nền cho Sidebar */
+        .sidebar {
+            position: fixed; /* Đặt thanh sidebar cố định */
+            top: 0; /* Cố định từ trên cùng */
+            left: 0; /* Cố định từ bên trái */
+            width: 250px;
+            background: rgba(110, 142, 190, 0.705)  url('cool_background.jpg');
+            background-size: cover;
+            background-position: center;
+            border-right: 1px solid #ddd;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(26, 18, 18, 0.2);
+            min-height: 100vh; /* Đảm bảo sidebar kéo dài toàn bộ chiều cao trang */
+
+        }
+
+        .welcome {
+            position: absolute; /* Đặt đối tượng này ở một vị trí tuyệt đối */
+            top: 10px; /* Vị trí từ trên xuống */
+            left: 1600px; /* Vị trí từ bên trái */
+            padding: 20px;
+            background-color: none;
+            display: flex;
+        }
+
+        .adjust {
+            position: absolute; /* Đặt đối tượng này ở một vị trí tuyệt đối */
+            top: 860px; /* Vị trí từ trên xuống */
+            left: 10px; /* Vị trí từ bên trái */
+            padding: 20px;
+            background-color: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            
+        }
+
+
+        /* Thu gọn chiều dài các nút trong .btn-group */
+        .btn-group .btn {
+            padding: 5px 10px;    /* Điều chỉnh padding để thu nhỏ kích thước nút */
+            font-size: 12px;      /* Giảm kích thước chữ */
+            min-width: 80px;      /* Đặt chiều rộng tối thiểu cho nút */
+            text-align: center;   /* Đảm bảo chữ căn giữa trong nút */
+            white-space: nowrap;  /* Đảm bảo chữ không bị xuống dòng */
+        }
+
+    
+
+
+        
+    </style>
+</head>
+<body>
+    <div class="container-main">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="filter-input-group">
+                <h4>Portal Menu</h4>
+                <button class="btn">⚙️</button>
+            </div>
+            <h5>Engineering Division</h5> 
+
+            <div class="admin">
+                
+                <img src="admin.jpeg" alt="admin" style="padding: 2px">
+                <div>
+                    
+                    <a href="Nguyen Tuan Anh" style="color: black;"> Nguyen Tuan Anh</a>
+                    <li style="font-size: 12px;">TL TIM</li>
+                    <li style="font-size: 12px;">Engineering Div.</li>
+                   
+                </div>
+            </div>
+            
+            
+            <ul>
+                <li><a href="#">🏠 Home</a></li>
+                <li><a href="#">🌐 Websites</a></li>
+                <li><a href="#">📋 Work Procedure</a></li>
+                <li><a href="#">⌨️ Organization</a></li>
+                <li><a href="#">📡 Contact</a></li>
+                <li><a href="#">📖 Booking Room</a></li>
+            </ul>
+
+            <div class="adjust">
+                <button class="btn">💡</button>
+                <button id='changeColorBtn' class="btn">☀️</button>
+                 
+            </div>
+
+
+        </div>
+        
+        <!-- Main Content -->
+        <div class="content">
+            <div class="welcome">
+                Xin chào, <a href="Nguyen Tuan Anh" style="color: black;"> Nguyen Tuan Anh</a> 😊! 
+            </div>
+            <!-- Filter Section -->
+            <div class="filter-section">
+                <!-- DOCUMENT > -->
+                <div class="filter-text">WEBSITE ></div>
+
+                <!-- Filter Buttons -->
+                <div class="btn-group">
+                    <button class="btn btn-outline-primary">All</button>
+                    <button class="btn btn-outline-primary">ENG Div</button>
+                    <button class="btn btn-outline-primary">Canon INC</button>
+                </div>
+
+                <!-- Filter Input and Add New -->
+                <div class="filter-input-group">
+                    <input class="filter-input" type="text" placeholder="Filter by name...">
+                    <!-- <button style="top: 20px; left: 1600px" class="btn">+ Add new</button> -->
+                    <button style="position: absolute; top: 100px; left: 1750px" class="btn">+ Add new</button>
+
+                </div>
+            </div>
+            
+            <!-- Table for Documents -->
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Version</th>
+                        <th>Upload Date</th>
+                        <th>Type</th>
+                        <th>DEPT</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="left">📁<a href="#">ENG MANUAL-A-0002-01 Pliers synergy - Big.xlsx</a></td>
+                        <td>01</td>
+                        <td>11/11/2024</td>
+                        <td>Manual</td>
+                        <td>All</td>
+                        <td><button class="btn btn-danger">🗑️</button></td>
+                    </tr>
+                    <tr>
+                        <td class="left">📁<a href="#">ENG MANUAL-B-0005-01 Catch puller using small.xlsx</a></td>
+                        <td>01</td>
+                        <td>26/03/2024</td>
+                        <td>Manual</td>
+                        <td>TIM</td>
+                        <td><button class="btn btn-danger">🗑️</button></td> 
+                    </tr>
+                    <tr>
+                        <td class="left">📁<a href="#">ENG MANUAL-C-0001-01 Pliers synergy Small.xlsx</a></td>
+                        <td>01</td>
+                        <td>18/05/2023</td>
+                        <td>Manual</td>
+                        <td>All</td>
+                        <td><button class="btn btn-danger">🗑️</button></td>
+                    </tr>
+                    <tr>
+                        <td class="left">📁<a href="#">ENG MANUAL-A-0001-01 Retry function.xlsx</a></td>
+                        <td>01</td>
+                        <td>11/11/2024</td>
+                        <td>Manual</td>
+                        <td>All</td>
+                        <td><button class="btn btn-danger">🗑️</button></td>
+                    </tr>
+                    <tr>
+                        <td class="left">📁<a href="#">ENG MANUAL-B-0001-01 Cutter using.xlsx</a></td>
+                        <td>01</td>
+                        <td>26/03/2024</td>
+                        <td>Manual</td>
+                        <td>TIM</td>
+                        <td><button class="btn btn-danger">🗑️</button></td> 
+                    </tr>
+                    <tr>
+                        <td class="left">📁<a href="#">IJENG-R001-02 Regulation of heavy items bringing and storage item to the shelf.pdf</a></td>
+                        <td>01</td>
+                        <td>18/05/2023</td>
+                        <td>Manual</td>
+                        <td>All</td>
+                        <td><button class="btn btn-danger">🗑️</button></td>
+                    </tr>
+                    <tr>
+                        <td class="left">📁<a href="#">IJENG-R0020-01 TIM Tool & RPA control rule.pdf</a></td>
+                        <td>01</td>
+                        <td>11/11/2024</td>
+                        <td>Manual</td>
+                        <td>All</td>
+                        <td><button class="btn btn-danger">🗑️</button></td>
+                    </tr>
+                    <tr>
+                        <td class="left">📁<a href="#">IJENG-R002-003 USING CAD ROOM RULE.pdf</a></td>
+                        <td>01</td>
+                        <td>26/03/2024</td>
+                        <td>Manual</td>
+                        <td>TIM</td>
+                        <td><button class="btn btn-danger">🗑️</button></td> 
+                    </tr>
+                    <tr>
+                        <td class="left">📁<a href="#">IJENG-R003-01 Electric saving and safety.pdf</a></td>
+                        <td>01</td>
+                        <td>18/05/2023</td>
+                        <td>Manual</td>
+                        <td>All</td>
+                        <td><button class="btn btn-danger">🗑️</button></td>
+                    </tr>
+                    <tr>
+                        <td class="left">📁<a href="#">Manual E-0001-01 Investigate crystal.xlsx</a></td>
+                        <td>01</td>
+                        <td>11/11/2024</td>
+                        <td>Manual</td>
+                        <td>All</td>
+                        <td><button class="btn btn-danger">🗑️</button></td>
+                    </tr>
+                    <tr>
+                        <td class="left">📁<a href="#">Manual E-0002-01 Investigate motor.xlsx</a></td>
+                        <td>01</td>
+                        <td>26/03/2024</td>
+                        <td>Manual</td>
+                        <td>TIM</td>
+                        <td><button class="btn btn-danger">🗑️</button></td> 
+                    </tr>
+                    <tr>
+                        <td class="left">📁<a href="#">Manual form - V01.pdf</a></td>
+                        <td>01</td>
+                        <td>18/05/2023</td>
+                        <td>Manual</td>
+                        <td>All</td>
+                        <td><button class="btn btn-danger">🗑️</button></td>
+                    <tr>
+                        <td class="left">📁<a href="#">PE1 MANUAL-A-0002-02 IDI instruction for Beginners.pptx</a></td>
+                        <td>01</td>
+                        <td>11/11/2024</td>
+                        <td>Manual</td>
+                        <td>All</td>
+                        <td><button class="btn btn-danger">🗑️</button></td>
+                    </tr>
+                    <tr>
+                        <td class="left">📁<a href="#">PE2 MANUAL-C-0036-01 HNS FFC CORE CHECK SHEET.xlsx</a></td>
+                        <td>01</td>
+                        <td>26/03/2024</td>
+                        <td>Manual</td>
+                        <td>TIM</td>
+                        <td><button class="btn btn-danger">🗑️</button></td> 
+                    </tr>
+                    <tr>
+                        <td class="left">📁<a href="#">PKE MANUAL-B-0001-01 Colour measurement tool.pptx</a></td>
+                        <td>01</td>
+                        <td>18/05/2023</td>
+                        <td>Manual</td>
+                        <td>All</td>
+                        <td><button class="btn btn-danger">🗑️</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="ta10.js"></script>
+</body>
+</html>
+
+
+
+
+//ta10.js
+// document.getElementById('changeColorBtn').addEventListener('click', function(){
+//     document.body.style.backgroundColor = 'lightblue';
+//     document.body.style.backgroundImage = 'none';
+// });
+
+// document.getElementById('changeColorBtn').addEventListener('click', function() {
+//     // Kiểm tra chế độ hiện tại và thay đổi giữa sáng và tối
+//     if (document.body.style.backgroundColor === 'rgb(0, 0, 0)') {
+//         // Chế độ sáng (giữ màu nền ban đầu)
+//         document.body.style.backgroundColor = 'rgba(0, 0, 0, 0.05)';  // Màu nền ban đầu
+//         document.body.style.backgroundImage = 'url("website_background.jpg")'; // Giữ ảnh nền
+//         document.body.style.color = '#333';  // Màu chữ tối
+//     } else {
+//         // Chế độ tối
+//         document.body.style.backgroundColor = '#2c3e50';  // Màu nền tối
+//         document.body.style.backgroundImage = 'none';      // Xóa ảnh nền
+//         document.body.style.color = '#ecf0f1';              // Màu chữ sáng
+//     }
+// });
+
+
+
+
+//ta11.html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Filter List</title>
+</head>
+<body>
+    <input type="text" id="filterInput" placeholder="Search for names..">
+    <ul id="namesList">
+        <li>Học Javascript</li>
+        <li>Javascript cơ bản</li>
+        <li>Bài tập Javascript</li>
+        <li>Các lệnh trong Javascript</li>
+        <!-- <a href="#">Manual E-0002-01 Investigate motor.xlsx</a> -->
+    </ul>
+<script>
+
+ document.getElementById('filterInput').addEventListener('keyup', function() {
+
+ const input = document.getElementById('filterInput').value.toUpperCase();
+
+ const ul = document.getElementById("namesList");
+
+ const li = ul.getElementsByTagName('li');
+
+ for (let i = 0; i < li.length; i++) {
+
+    
+
+ let txtValue = li[i].textContent || li[i].innerText;
+
+ if (txtValue.toUpperCase().indexOf(input) > -1) {
+
+ li[i].style.display = "";
+
+ } else {
+
+ li[i].style.display = "none";
+
+ }
+
+ }
+
+ });
+
+ </script>
+
+</body>
+
+</html>
